@@ -25,26 +25,23 @@
     
     onMounted(doHandshake);
 
+    function isRandom () {
+        return route.fullPath == "/random";
+    }
+    function isPopular () {
+        return route.fullPath == "/popular";
+    }
+    function isNew () {
+        return route.fullPath == "/new";
+    }
     function goRandom () {
-        if (route.fullPath == "/random") {
-            router.go(0);
-        } else {
-            router.push("/random");
-        }
+        router.push("/random");
     }
     function goPopular () {
-        if (route.fullPath == "/popular") {
-            router.go(0);
-        } else {
-            router.push("/popular");
-        }
+        router.push("/popular");
     }
     function goNew () {
-        if (route.fullPath == "/new") {
-            router.go(0);
-        } else {
-            router.push("/new");
-        }
+        router.push("/new");
     }
 
 </script>
@@ -62,13 +59,13 @@
     </div>
     <div id="content" v-else>
         <div id="random" class="button-container">
-            <button :disabled="this.$route.fullPath == '/random'" @click="this.$router.push('/random')">Random quote</button>
+            <button :disabled="isRandom()" @click="goRandom()">Random quote</button>
         </div>
         <div id="popular" class="button-container">
-            <button :disabled="this.$route.fullPath == '/popular'" @click="this.$router.push('/popular')">Popular quote</button>
+            <button :disabled="isPopular()" @click="goPopular()">Popular quote</button>
         </div>
         <div id="new" class="button-container">
-            <button :disabled="this.$route.fullPath == '/new'" @click="this.$router.push('/new')">Write your own!</button>
+            <button :disabled="isNew()" @click="goNew()">Write your own!</button>
         </div>
         <div id="router">
             <RouterView />
