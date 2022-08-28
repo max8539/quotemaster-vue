@@ -1,4 +1,4 @@
-// quotemaster-vue
+// quotemaster-vue: src/router/router.js
 // https://github.com/max8539/quotemaster-vue
 //
 // Copyright (C) 2022 Max Yuen

@@ -1,5 +1,5 @@
 <!--
-    quotemaster-vue
+    quotemaster-vue: src/views/id.vue
     https://github.com/max8539/quotemaster-vue
     
     Copyright (C) 2022 Max Yuen
@@ -66,7 +66,6 @@
 
 <style scoped>
     p {
-        font-family: "Tahoma", sans-serif;
         font-size: 24px;
         font-weight: bold;
         padding: 10px;

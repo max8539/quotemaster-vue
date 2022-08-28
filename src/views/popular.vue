@@ -1,5 +1,5 @@
 <!--
-    quotemaster-vue
+    quotemaster-vue: src/views/popular.vue
     https://github.com/max8539/quotemaster-vue
     
     Copyright (C) 2022 Max Yuen
@@ -57,7 +57,7 @@
     <div id="quote-display" v-else>
         <quoteRenderer :quote="QUOTE" />
         <div id="reload-button" class="button-container">
-            <button @click="getQuote">Get another quote!</button>
+            <button @click="getQuote">Get another quote</button>
         </div>
     </div>
 </template>

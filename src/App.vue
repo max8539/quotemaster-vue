@@ -1,5 +1,5 @@
 <!--
-    quotemaster-vue
+    quotemaster-vue: src/App.vue
     https://github.com/max8539/quotemaster-vue
     
     Copyright (C) 2022 Max Yuen
@@ -17,25 +17,24 @@
     limitations under the License.
  -->
 <script setup>
-    import { reactive, ref, onMounted } from "vue";
-    import { RouterView, useRoute, useRouter } from 'vue-router'
+    import { ref, onMounted } from "vue";
+    import { RouterView, useRoute, useRouter } from 'vue-router';
     import * as config from "./config.js";
 
-    const host = ref(config.HOST);
     const apiOnline = ref(true);
     const route = useRoute();
-    const routeDisplay = reactive(route);
     const router = useRouter();
 
-    let handshake;
-
+    // Test API connectivity
     async function doHandshake () {
+        let handshake;
         try {
             handshake = await fetch(`${config.API_HOST}/handshake`);
-            if (!handshake.ok) {
+            if (handshake.ok) {
+                apiOnline.value = true;
+            } else {
                 apiOnline.value = false;
             }
-            apiOnline.value = true;
         } catch {
             apiOnline.value = false;
         }
@@ -68,11 +67,12 @@
     <div id="header">
         <h1>Quotemaster</h1>
         <p>Vue build v0.1.0</p>
+        <p><a href="https://github.com/max8539/quotemaster-vue">View code on GitHub</a></p>
     </div>
     <div id="no-api" v-if="!apiOnline">
         <p>Unable to reach API server.</p>
         <div class="button-container">
-            <button @click="doHandshake">Retry</button>
+            <button @click="doHandshake()">Retry</button>
         </div>
     </div>
     <div id="content" v-else>
@@ -83,7 +83,7 @@
             <button :disabled="isPopular()" @click="goPopular()">Popular quote</button>
         </div>
         <div id="new" class="button-container">
-            <button :disabled="isNew()" @click="goNew()">Write your own!</button>
+            <button :disabled="isNew()" @click="goNew()">Write your own</button>
         </div>
         <div id="router">
             <RouterView />

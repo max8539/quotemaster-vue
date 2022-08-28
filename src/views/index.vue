@@ -1,5 +1,5 @@
 <!--
-    quotemaster-vue
+    quotemaster-vue: src/views/index.vue
     https://github.com/max8539/quotemaster-vue
     
     Copyright (C) 2022 Max Yuen
