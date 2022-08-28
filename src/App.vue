@@ -69,6 +69,7 @@
         <p>Vue build v0.1.0</p>
         <p><a href="https://github.com/max8539/quotemaster-vue">View code on GitHub</a></p>
     </div>
+    
     <div id="no-api" v-if="!apiOnline">
         <p>Unable to reach API server.</p>
         <div class="button-container">

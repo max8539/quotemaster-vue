@@ -116,7 +116,6 @@
         <p>Anything you submit here is publicly viewable. Do not submit any personal or sensitive information.</p>
     </div>
     
-
     <form>
         <label for="quote">Your quote</label>
         <textarea id="quote" rows="4" v-model="quote" :disabled="submitToggle"></textarea>
