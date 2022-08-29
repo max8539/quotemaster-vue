@@ -30,11 +30,12 @@
     let error = ref(false);
     let errorMessage = ref("Unable to load quote.");
 
-
+    // Request quote by ID from API
     async function getQuote () {
         let res, errorObj;
         try {
             res = await fetch(`${config.API_HOST}/quotemaster/id/${ID}`);
+            
             if (!res.ok) {
                 error.value = true;
                 if (res.status == 400) {

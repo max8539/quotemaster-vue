@@ -54,6 +54,7 @@
             <button @click="getQuote">Retry</button>
         </div>
     </div>
+    
     <div v-else>
         <quoteRenderer :quote="QUOTE" />
         <div id="reload-button" class="button-container">

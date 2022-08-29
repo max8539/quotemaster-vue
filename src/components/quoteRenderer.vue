@@ -31,6 +31,7 @@
     let shareToggle = ref(false);
     let shareLink = ref("");
     
+    // Reset flag states if quote changes, update share link with new id
     function newQuoteState () {
         if (props.quote != null) {
             likeToggle.value = false;
@@ -40,10 +41,12 @@
         }
     }
 
+    // Send like API request
     async function likeQuote () {
         likeToggle.value = true;
         let reqObj = {id:props.quote.id}
         let res;
+
         try {
             res = await fetch(`${config.API_HOST}/quotemaster/like`, {
                 method: 'POST', 
@@ -52,6 +55,7 @@
                 },
                 body: JSON.stringify(reqObj),
             });
+
             if (res.ok) {
                 likeSuccess.value = true;
             } else {
@@ -70,17 +74,21 @@
     <div id="placeholder" v-if="quote == null">
         <p>Loading quote...</p>
     </div>
+
     <div v-else>
         <p id="quote">{{quote.quote}}</p>
         <p id="name">- {{quote.name}}</p>
+
         <div id="actions">
             <div class="button-container">
                 <button :disabled="likeToggle" @click="likeQuote">{{likeSuccess ? "Liked" : "Like"}} this quote</button>
             </div>
+
             <div class="button-container">
                 <button :disabled="shareToggle" @click="shareToggle = true">Share this quote</button>
             </div>
         </div>
+
         <div id="share-link" v-if="shareToggle">
             <p>Copy this link to share:</p>
             <input type="text" :value="shareLink" disabled>

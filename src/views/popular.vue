@@ -33,6 +33,7 @@
         let res;
         try {
             res = await fetch(`${config.API_HOST}/quotemaster/popular`);
+            
             if (!res.ok) {
                 error.value = true;
             } else {
@@ -54,6 +55,7 @@
             <button @click="getQuote">Retry</button>
         </div>
     </div>
+
     <div id="quote-display" v-else>
         <quoteRenderer :quote="QUOTE" />
         <div id="reload-button" class="button-container">

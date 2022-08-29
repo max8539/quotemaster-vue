@@ -42,6 +42,7 @@
     
     onMounted(doHandshake);
 
+    // Check if currently on a page
     function isRandom () {
         return route.fullPath == "/random";
     }
@@ -51,6 +52,8 @@
     function isNew () {
         return route.fullPath == "/new";
     }
+
+    // Update router to go to page
     function goRandom () {
         router.push("/random");
     }
@@ -76,6 +79,7 @@
             <button @click="doHandshake()">Retry</button>
         </div>
     </div>
+
     <div id="content" v-else>
         <div id="random" class="button-container">
             <button :disabled="isRandom()" @click="goRandom()">Random quote</button>
@@ -86,6 +90,7 @@
         <div id="new" class="button-container">
             <button :disabled="isNew()" @click="goNew()">Write your own</button>
         </div>
+        
         <div id="router">
             <RouterView />
         </div>
@@ -109,7 +114,7 @@
         text-align: center;
     }
     #no-api {
-        width: 360px;
+        width: 340px;
         margin: auto;
         padding: 10px;
         text-align: center;

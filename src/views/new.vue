@@ -31,6 +31,7 @@
     let shareToggle = ref(false);
     let shareLink = ref("");
 
+    // Perform error checking, then send API request to submit quote
     async function submitQuote () {
         submitToggle.value = true;
         submitError.value = false;
@@ -48,6 +49,7 @@
             errorMessage.value = "Name should be less than 40 characters long.";
             submitError.value = true;
         }
+
         if (submitError.value) {
             submitToggle.value = false;
             return;
@@ -66,6 +68,7 @@
                 },
                 body: JSON.stringify(reqObj),
             });
+
             if (res.status == 400) {
                 resObj = await res.json();
                 errorMessage.value = resObj.errorMessage;
@@ -84,6 +87,7 @@
         }
     }
 
+    // Reset form and flag states
     function reset () {
         quote.value = "";
         name.value = "";
@@ -96,8 +100,10 @@
     <div class="message-box" id="submit-error" v-if="submitError">
         <h2>{{errorMessage}}</h2>
     </div>
+
     <div class="message-box" id="submit-success" v-else-if="submitSuccess">
         <h2>Quote submitted!</h2>
+
         <div id="submit-actions">
             <div>
                 <button @click="shareToggle = true" :disabled="shareToggle">Share this quote</button>
@@ -106,11 +112,13 @@
                 <button @click="reset">Write another quote</button>
             </div>
         </div>
+
         <div id="share-link" v-if="shareToggle">
             <p>Copy this link to share:</p>
             <input type="text" :value="shareLink" disabled>
         </div>
     </div>
+
     <div class="message-box" id="warning" v-else>
         <h2>Warning</h2>
         <p>Anything you submit here is publicly viewable. Do not submit any personal or sensitive information.</p>
