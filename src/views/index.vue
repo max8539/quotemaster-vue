@@ -25,7 +25,6 @@
 
 <style scoped>
     #placeholder p {
-        font-family: "Tahoma", sans-serif;
         font-size: 24px;
         font-weight: bold;
         text-align: center;
